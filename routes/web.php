@@ -8,7 +8,7 @@ Route::get('/', function () {
 
 Route::get('/profile', function () {
     return view('profile.index');
-});
+})->middleware('auth');
 
 Route::get('/tasks', function () {
     return view('tasks.index');

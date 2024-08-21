@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username', 50)->unique();
             $table->string('email', 100)->unique();
-            $table->string('password_hash', 255);
+            $table->string('password', 255); // 修正: password カラムを追加
             $table->enum('role', ['user', 'teacher']);
             $table->timestamps();
         });

@@ -11,21 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->primary();
-            $table->string('name', 100);
-            $table->integer('age')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->nullable();
-            $table->string('location', 100)->nullable();
-            $table->text('bio')->nullable();
-            $table->text('interests')->nullable();
-            $table->text('languages_spoken')->nullable();
-            $table->string('profile_picture', 255)->nullable();
-            $table->text('visited_places')->nullable();
-            $table->text('travel_preferences')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('profiles')) {
+            Schema::create('profiles', function (Blueprint $table) {
+                $table->unsignedBigInteger('user_id')->primary();
+                $table->string('name', 100);
+                $table->integer('age')->nullable();
+                $table->enum('gender', ['male', 'female', 'other'])->nullable();
+                $table->string('location', 100)->nullable();
+                $table->text('bio')->nullable();
+                $table->text('interests')->nullable();
+                $table->text('languages_spoken')->nullable();
+                $table->string('profile_picture', 255)->nullable();
+                $table->text('visited_places')->nullable();
+                $table->text('travel_preferences')->nullable();
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
