@@ -41,3 +41,5 @@ Route::get('/sns/share', function () {
 Auth::routes();
 
 Route::get('/mypage', [App\Http\Controllers\HomeController::class, 'index'])->name('mypage');
+
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

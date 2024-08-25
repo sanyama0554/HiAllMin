@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException; // 追加
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/mypage'; // ここを確認
+    protected $redirectTo = '/mypage';
 
     public function __construct()
     {
