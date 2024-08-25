@@ -7,6 +7,7 @@
     <h2 class="text-xl font-semibold mb-4">プロフィール編集</h2>
     <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
         @csrf
+        <input type="hidden" name="id" value="{{ $profile->id }}">
         <div>
             <label for="username" class="block text-sm font-medium text-gray-700">名前</label>
             <input type="text" name="username" id="username" value="{{ $user->username }}" required class="w-full p-2 border rounded">

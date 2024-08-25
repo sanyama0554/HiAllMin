@@ -12,6 +12,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
+    // マイページにリダイレクトするように設定
     protected $redirectTo = '/mypage';
 
     public function __construct()
@@ -42,12 +43,5 @@ class LoginController extends Controller
 
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
-    }
-
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
     }
 }

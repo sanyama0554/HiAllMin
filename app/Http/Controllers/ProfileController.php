@@ -29,13 +29,14 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
-
-        // ユーザー情報の更新
-        $user->update($request->only(['username', 'email']));
-
-        // プロフィール情報の更新
-        $profile->update($request->except(['username', 'email']));
-
-        return redirect()->route('profile.index')->with('success', 'プロフィールが更新されました。');
+        if ($profile) {
+            // ユーザー情報の更新
+            $user->update($request->only(['username', 'email', 'gender']));
+            // プロフィール情報の更新
+            $profile->update($request->except(['username', 'email', 'gender']));
+            $profile->update(['interests' => $request->input('interests')]);
+            return redirect()->route('profile.index')->with('success', 'プロフィールが更新されました。');
+        }
+        return redirect()->route('profile.index')->with('error', 'プロフィールの更新に失敗しました。');
     }
 }

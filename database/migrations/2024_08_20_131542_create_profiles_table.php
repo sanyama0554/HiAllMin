@@ -13,7 +13,8 @@ return new class extends Migration
     {
         if (!Schema::hasTable('profiles')) {
             Schema::create('profiles', function (Blueprint $table) {
-                $table->unsignedBigInteger('user_id')->primary();
+                $table->id(); // idカラムを追加
+                $table->unsignedBigInteger('user_id');
                 $table->string('name', 100)->nullable(); // nullable に変更
                 $table->integer('age')->nullable();
                 $table->enum('gender', ['male', 'female', 'other'])->nullable();
