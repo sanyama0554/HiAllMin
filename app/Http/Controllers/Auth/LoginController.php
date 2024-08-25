@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException; // 追加
 
 class LoginController extends Controller
 {
@@ -41,14 +42,5 @@ class LoginController extends Controller
 
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
-    }
-
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        Log::error('Login failed for user: ' . $request->input('username'));
-
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
     }
 }

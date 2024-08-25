@@ -1,14 +1,19 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index']);
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
+});
 
 Route::get('/tasks', function () {
     return view('tasks.index');

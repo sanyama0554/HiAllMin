@@ -18,11 +18,6 @@
         <p><strong>訪れた場所:</strong> {{ $profile->visited_places ?? 'なし' }}</p>
         <p><strong>旅行の好み:</strong> {{ $profile->travel_preferences ?? 'なし' }}</p>
     </div>
-    <!-- TODO: 以下の更新フォームの実装位置をどうするか検討 -->
-    <!-- <form class="space-y-4">
-        <input type="text" placeholder="名前" required class="w-full p-2 border rounded" value="{{ $user->name }}">
-        <input type="email" placeholder="メールアドレス" required class="w-full p-2 border rounded" value="{{ $user->email }}">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">更新</button>
-    </form> -->
+    <a href="{{ route('profile.edit') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">編集</a>
 </section>
 @endsection

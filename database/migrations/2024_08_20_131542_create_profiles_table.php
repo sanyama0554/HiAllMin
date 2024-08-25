@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('profiles')) {
             Schema::create('profiles', function (Blueprint $table) {
                 $table->unsignedBigInteger('user_id')->primary();
-                $table->string('name', 100);
+                $table->string('name', 100)->nullable(); // nullable に変更
                 $table->integer('age')->nullable();
                 $table->enum('gender', ['male', 'female', 'other'])->nullable();
                 $table->string('location', 100)->nullable();
