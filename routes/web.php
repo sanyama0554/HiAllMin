@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('profile')->group(function () {
-        Route::get('/', [ProfileController::class, 'index']);
+        Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
         Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
     });
