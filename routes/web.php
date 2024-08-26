@@ -18,9 +18,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/tasks', function () {
-    return view('tasks.index');
-});
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
 Route::get('/tasks/ai-assessment', function () {
     return view('tasks.ai_assessment');
