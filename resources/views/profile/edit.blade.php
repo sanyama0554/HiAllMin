@@ -5,6 +5,17 @@
 @section('content')
 <section id="profile-edit">
     <h2 class="text-xl font-semibold mb-4">プロフィール編集</h2>
+    
+    @if ($errors->any())
+        <div class="bg-red-500 text-white p-4 rounded">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
         @csrf
         <input type="hidden" name="id" value="{{ $profile->id }}">
