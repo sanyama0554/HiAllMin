@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'testuser@example.com',
             'password' => Hash::make('password'),
             'role' => 'user',
+        ]);
+
+        $this->call([
+            AssignmentsTableSeeder::class,
         ]);
     }
 }
